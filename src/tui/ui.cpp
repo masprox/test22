@@ -1,17 +1,27 @@
 #include <iostream>
+#include <windows.h>
 #include "ladder.h"
 
-void generateKeilCode(const LadderProgram& program, const std::string& filename);
+void enableUtf8() {
+    SetConsoleOutputCP(CP_UTF8);
+    SetConsoleCP(CP_UTF8);
+}
+
+void clearScreen() {
+    system("cls");
+}
 
 void showMenu() {
+    clearScreen();
     std::cout << "\n=== LDmicro TUI (Fungal-UI Style) ===\n";
     std::cout << "1. اضافه کردن Rung\n";
     std::cout << "2. نمایش برنامه\n";
     std::cout << "3. تولید کد Keil\n";
-    std::cout << "4. خروج\n";
+    std::cout << "4. خروج (Esc)\n";
 }
 
 void runTUI() {
+    enableUtf8();
     LadderProgram prog;
     int choice;
     while (true) {
