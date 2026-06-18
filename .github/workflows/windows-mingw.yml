@@ -1,1 +1,36 @@
-workflow content
+name: Windows MinGW Build
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Install MinGW
+      uses: msys2/setup-msys2@v2
+      with:
+        msystem: MINGW64
+        install: mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-make git
+
+    - name: Configure and Build
+      shell: msys2 {0}
+      run: |
+        mkdir -p build
+        cd build
+        cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+        mingw32-make -j2
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ldmicro_tui-windows
+        path: build/ldmicro_tui.exe
+        if-no-files-found: error
