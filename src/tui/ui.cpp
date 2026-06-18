@@ -4,7 +4,7 @@
 void generateKeilCode(const LadderProgram& program, const std::string& filename);
 
 void showMenu() {
-    std::cout << "\n=== LDmicro TUI ===\n";
+    std::cout << "\n=== LDmicro TUI (Fungal-UI Style) ===\n";
     std::cout << "1. اضافه کردن Rung\n";
     std::cout << "2. نمایش برنامه\n";
     std::cout << "3. تولید کد Keil\n";

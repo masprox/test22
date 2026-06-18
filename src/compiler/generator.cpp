@@ -1,5 +1,5 @@
 #include "ladder.h"
-#include "../plc/plcLib.h"
+#include "plcLib.h"
 #include <fstream>
 #include <string>
 
@@ -15,6 +15,6 @@ void generateKeilCode(const LadderProgram& program, const std::string& filename)
             }
         }
     }
-    file << "}\n\nvoid loop() {}";
+    file << "}\n\nvoid loop() {}\n";
     file.close();
 }
