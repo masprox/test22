@@ -20,17 +20,24 @@ jobs:
         msystem: MINGW64
         install: mingw-w64-x86_64-toolchain mingw-w64-x86_64-cmake mingw-w64-x86_64-make git
 
-    - name: Configure and Build
+    - name: Configure CMake
       shell: msys2 {0}
       run: |
         mkdir -p build
         cd build
         cmake .. -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release
+
+    - name: Build
+      shell: msys2 {0}
+      run: |
+        cd build
         mingw32-make -j2
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
       with:
         name: ldmicro_tui-windows
-        path: build/ldmicro_tui.exe
-        if-no-files-found: error
+        path: |
+          build/ldmicro_tui.exe
+          build/ldmicro_tui
+        if-no-files-found: warn
