@@ -1,9 +1,11 @@
 #include <iostream>
-#include "../include/ladder.h"
+#include "ladder.h"
+
+void generateKeilCode(const LadderProgram& program, const std::string& filename);
 
 void showMenu() {
-    std::cout << "\n=== LDmicro TUI (Fungal-UI Style) ===\n";
-    std::cout << "1. اضافه کردن Rung ساده\n";
+    std::cout << "\n=== LDmicro TUI ===\n";
+    std::cout << "1. اضافه کردن Rung\n";
     std::cout << "2. نمایش برنامه\n";
     std::cout << "3. تولید کد Keil\n";
     std::cout << "4. خروج\n";
@@ -17,10 +19,10 @@ void runTUI() {
         std::cin >> choice;
         if (choice == 1) {
             Rung r;
-            LadderElement contact{ElementType::CONTACT, "X1", 0};
-            r.elements.push_back(contact);
-            LadderElement coil{ElementType::COIL, "Y1", 0};
-            r.elements.push_back(coil);
+            LadderElement e{ElementType::CONTACT, "X1", 0};
+            r.elements.push_back(e);
+            e = {ElementType::COIL, "Y1", 0};
+            r.elements.push_back(e);
             prog.addRung(r);
             std::cout << "Rung اضافه شد!\n";
         } else if (choice == 2) {

@@ -1,4 +1,4 @@
-#include "../include/ladder.h"
+#include "ladder.h"
 #include <sstream>
 
 void LadderProgram::addRung(const Rung& rung) {

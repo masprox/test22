@@ -11,4 +11,4 @@ add_executable(ldmicro_tui
     src/plc/plcLib.cpp
 )
 
-target_include_directories(ldmicro_tui PRIVATE include)
+target_include_directories(ldmicro_tui PRIVATE include src/plc)
