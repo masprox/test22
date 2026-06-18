@@ -7,7 +7,7 @@ enum class ElementType { CONTACT, COIL, TIMER_ON, TIMER_OFF, COUNTER };
 struct LadderElement {
     ElementType type;
     std::string name;
-    int param; // برای تایمر/کانتر
+    int param = 0;
 };
 
 struct Rung {
